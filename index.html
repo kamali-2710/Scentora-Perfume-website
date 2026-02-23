@@ -24,7 +24,7 @@
           <span id="pswderr" class="errs"></span>
         </div>
         <button type="submit">Login</button>
-        <p>Don't have an Acccount? <a href="../Admin panel/register.html">Register</a></p>
+        <p>Don't have an Acccount? <a href="./Admin panel/register.html">Register</a></p>
         <h5>Are you an Admin? <a href="./Admin panel/adminlogin.html">Login here</a></h5>
       </form>
 
@@ -76,7 +76,7 @@
               });
 
               setTimeout(() => {
-                window.location.href = "../register.html";
+                window.location.href = "./register.html";
               }, 1500);
               return;
             }
@@ -94,7 +94,7 @@
                 cancelButtonText: "Cancel",
               }).then((result) => {
                 if (result.isConfirmed) {
-                  window.location.href = "../register.html";
+                  window.location.href = "./register.html";
                 }
               });
             }
@@ -112,7 +112,7 @@
               });
 
               setTimeout(() => {
-                window.location.href = "../home.html";
+                window.location.href = "./home.html";
               }, 1500);
             } else {
               Swal.fire({
