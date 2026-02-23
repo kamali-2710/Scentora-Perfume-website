@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scentora Cart</title>
+    <link rel="icon" href="./img/title img.jpeg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./cart.css" />
+    <link rel="stylesheet" href="./home.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- HEADER SAME AS HOME -->
+      <header>
+        <div class="logo">
+          <i class="fa-solid fa-spray-can-sparkles"></i>
+          <p>Scentora</p>
+        </div>
+        <div class="link">
+          <a href="./home.html">Home</a>
+          <a href="./about.html">About</a>
+          <a href="./shop.html">Shop</a>
+          <a href="./contact.html">Contact</a>
+        </div>
+        <nav>
+          <i
+            class="fa-solid fa-cart-arrow-down"
+            onclick="window.location.href = 'cart.html'"
+          >
+            <span id="cartCount">0</span>
+          </i>
+          <i class="fa-solid fa-heart"></i>
+          <div class="cart">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <a href="" onclick="logout()">Logout</a>
+          </div>
+        </nav>
+      </header>
+
+      <!-- CART ITEMS DYNAMICALLY LOADED -->
+      <section class="cardpage navcart">
+        <div id="cartContainer"></div>
+      </section>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          loadCart();
+          updateHeaderCount();
+        });
+
+        function loadCart() {
+          const cart = JSON.parse(localStorage.getItem("cart")) || [];
+          const container = document.getElementById("cartContainer");
+          container.innerHTML = "";
+
+          if (cart.length === 0) {
+            container.innerHTML =
+              "<h2 class='empty-cart'>Your cart is empty</h2>";
+            return;
+          }
+
+          cart.forEach(function (item) {
+            const cartItem = document.createElement("div");
+            cartItem.className = "cart-item";
+
+            cartItem.innerHTML =
+  '<div class="cart-image">' +
+  '<img src="' + item.image + '">' +
+  "</div>" +
+
+  '<div class="cart-details">' +
+
+  '<div class="top-icons">' +
+  '<i class="fa-regular fa-heart"></i>' +
+  '<i class="fa-solid fa-x" onclick="removeItem(' + item.id + ')"></i>' +
+  "</div>" +
+
+  "<h3>" + item.name + "</h3>" +
+  '<div class="price">₹ ' + (item.price * item.qty) + "</div>" +
+
+  '<div class="info">' +
+  "<span>Qty:</span>" +
+  '<div class="qty-selector">' +
+  '<button onclick="updateQty(' + item.id + ', -1)">-</button>' +
+  '<input type="text" value="' + item.qty + '" readonly>' +
+  '<button onclick="updateQty(' + item.id + ', 1)">+</button>' +
+  "</div>" +
+  "</div>" +
+  "</div>";
+            container.appendChild(cartItem);
+          });
+        }
+
+        function updateQty(id, change) {
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+          cart = cart.map((item) => {
+            if (item.id === id) {
+              item.qty += change;
+
+              if (item.qty < 1) {
+                item.qty = 1; // qty 0 ku pogakoodathu
+              }
+            }
+            return item;
+          });
+
+          localStorage.setItem("cart", JSON.stringify(cart));
+
+          loadCart();
+          updateHeaderCount();
+        }
+
+        function removeItem(id) {
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+          cart = cart.filter((item) => item.id !== id);
+
+          localStorage.setItem("cart", JSON.stringify(cart));
+
+          updateHeaderCount();
+          loadCart();
+        }
+
+        function updateHeaderCount() {
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+          // let total = cart.reduce((sum, item) => sum + item.qty, 0);
+
+          const cartCount = document.getElementById("cartCount");
+          if (cartCount) {
+            cartCount.innerText = cart.length;
+          }
+        }
+      </script>
+    </div>
+  </body>
+</html>

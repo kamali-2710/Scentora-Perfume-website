@@ -1,0 +1,203 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+main {
+  /* border: 1px solid white; */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+form {
+  /* border: 1px solid white; */
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 0px 10px #7968d9;
+  border-radius: 15px;
+  background-color: #7968d9;
+}
+form h2 {
+  /* border: 1px solid; */
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.735);
+}
+form input,
+form select {
+  border: 1px solid rgba(0, 0, 0, 0.422);
+  border-radius: 5px;
+  padding: 10px 10px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 0.8rem;
+  outline: none;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.701);
+}
+option {
+  color: rgba(0, 0, 0, 0.701);
+}
+form:hover {
+  box-shadow: 0px 0px 20px #7968d9;
+}
+::placeholder {
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.701);
+}
+.err {
+  /* border: 1px solid rgb(250, 88, 88); */
+  width: 300px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgb(130, 20, 20);
+  display: block;
+  margin: -18px 0px;
+}
+label {
+  /* border: 1px solid rgb(250, 88, 88); */
+  color: #dddaf1;
+  width: 290px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: block;
+}
+form button {
+  /* border: 1px solid red; */
+  height: 40px;
+  width: 120px;
+  background-color: #4733a1ee;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin: 40px 0px 20px;
+}
+form button:hover {
+  background-color: rgba(0, 0, 255, 0.626);
+}
+
+table,
+td,
+th {
+  border: 2px solid;
+  height: 40px;
+  width: 50%;
+  padding: 10px 30px;
+  color: white;
+  text-align: center;
+  border-collapse: collapse;
+  margin-top: 30px;
+}
+th {
+  background-color: #5e4cc7fa;
+}
+td {
+  padding: 10px;
+}
+table td img {
+  width: 90px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  padding: 2px;
+}
+table td button {
+  background: rgb(57, 46, 154);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0px 3px;
+  transition: 0.8s;
+}
+table td button:active {
+  transform: scale(1.5) skew(-2deg);
+}
+
+@media (max-width: 768px) {
+  form label {
+    font-size: 1rem;
+  }
+  ::placeholder {
+    font-size: 0.9rem;
+  }
+  main {
+    display: block;
+  }
+  
+}
+@media (max-width: 576px) {
+  .wrapper {
+    grid-template-columns: 100px 1fr;
+  }
+  form {
+    width: 100%;
+  }
+  .wrapper label {
+    font-size: 0.8rem;
+    margin-left: 90px;
+  }
+  .wrapper h2 {
+    font-size: 1rem;
+    padding-bottom: 10px;
+  }
+  form input {
+    width: 90%;
+    padding: 5px 9px;
+  }
+  aside {
+    width: 100px;
+  }
+  main {
+    display: block;
+  }
+  
+  table th,
+  td {
+    font-size: 0.8rem;
+  }
+  form button {
+    font-size: 0.8rem;
+  }
+  form select {
+    width: 90%;
+  }
+  ::placeholder {
+    font-size: 0.8rem;
+  }
+  .wrapper .err {
+    margin-left: 90px;
+  }
+  form select {
+    padding: 5px 4px;
+  }
+  aside .icons {
+    gap:6px;
+  }
+  td {
+    padding: 1px;
+    height: 10px;
+    font-size: 0.8rem;
+  }
+  main table {
+    /* margin-left: 750px; */
+    padding: 1px;
+  }
+}

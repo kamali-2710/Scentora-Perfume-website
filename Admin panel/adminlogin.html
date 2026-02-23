@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login Page</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <form id="loginform">
+        <h2>Admin Login</h2>
+        <div class="form-content">
+          <label for="">Email</label>
+          <input
+            type="email"
+            placeholder="Ex. abc@gmail.com"
+            id="gmail"
+          /><br />
+          <span id="gmailerr" class="errs"></span>
+          <label for="">Password</label>
+          <input type="password" placeholder="Password" id="pswd" /><br />
+          <span id="pswderr" class="errs"></span>
+        </div>
+        <button type="submit">Login</button>
+        <p>Not an Admin? <a href="./index.html">Go to user login</a></p>
+      </form>
+
+      <script>
+        //submit refresh prevent
+        let form_btn = document.getElementById("loginform");
+        form_btn.addEventListener("submit", (e) => {
+          e.preventDefault();
+          login();
+        });
+        //validation
+
+        let login = () => {
+          let gmail = document.getElementById("gmail");
+          let pswd = document.getElementById("pswd");
+
+          let gmailerr = document.getElementById("gmailerr");
+          let pswderr = document.getElementById("pswderr");
+
+          let ischecked = true;
+
+          if (gmail.value == "") {
+            gmailerr.innerText = "This field is required";
+            gmail.style.border = "1px solid red";
+            ischecked = false;
+          } else if (gmail.value !== "admin54@gmail.com") {
+            gmailerr.innerText = "Invalid User Name";
+            gmail.style.border = "2px solid red";
+            ischecked = false;
+          } else {
+            gmailerr.innerText = "";
+            gmail.style.border = "1px solid green";
+          }
+          if (pswd.value == "") {
+            pswderr.innerText = "This field is required";
+            pswd.style.border = "1px solid red";
+            ischecked = false;
+          } 
+          else if (pswd.value !== "admin54") {
+            pswderr.innerText = "Incorrect Password";
+            pswd.style.border = "2px solid red";
+            ischecked = false;
+          } else {
+            pswderr.innerText = "";
+            pswd.style.border = "1px solid green";
+          }
+
+          if (ischecked) {
+
+              Swal.fire({
+                title: "Success!",
+                text: "Login Successfully",
+                icon: "success",
+                timer: 1500,
+                showConfirmButton: false,
+              });
+
+              setTimeout(() => {
+                window.location.href = "dashboard.html";
+              }, 1500);
+            }
+          }
+        // };
+      </script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+@media (max-width: 768px) {
+  form label {
+    font-size: 1rem;
+  }
+  ::placeholder {
+    font-size: 0.9rem;
+  }
+}

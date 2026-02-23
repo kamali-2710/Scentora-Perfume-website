@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.wrapper {
+  /* border: 1px solid red; */
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: #7968d9;
+}
+.wrapper form {
+  /* border: 1px solid red; */
+  height: 600px;
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.941);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.518);
+  border-radius: 10px;
+  transition: .2s;
+}
+.wrapper form:hover{
+  box-shadow: 0px 0px 30px rgba(240, 234, 234, 0.717);
+  transform: translatey(8px);
+}
+.wrapper .form-content {
+  /* border: 1px solid; */
+  display: flex;
+  flex-direction: column;
+}
+form h2 {
+  /* border: 1px solid; */
+  text-align: center;
+  font-size: 1.7rem;
+ color: #7968d9;
+}
+
+form input {
+  border: 1px solid;
+  padding: 8px;
+  width: 300px;
+  margin-bottom: 2px;
+  border-radius: 5px;
+}
+.icons{
+  position: relative;
+}
+.icons .fa-eye-slash{
+  /* border: 1px solid red; */
+  position: absolute;
+  right: 10px;
+  bottom: 13px;
+  color: rgba(0, 0, 0, 0.605);
+  cursor: pointer;
+}
+
+form button {
+  text-decoration: none;
+  border: none;
+  padding: 8px;
+  width: 150px;
+   background: linear-gradient(to left, #7968d9, rgb(158, 105, 204));
+  color: white;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 7px;
+  transition: .4s;
+}
+form button:hover{
+   background: linear-gradient(to right, #7968d9, rgb(158, 105, 204));
+  cursor: pointer;
+}
+.wrapper p {
+  font-size: 0.8rem;
+  margin-top: 27px;
+}
+a{
+   text-decoration: none;
+}
+.wrapper label {
+  font-size: 0.9rem;
+  margin-top: 8px;
+  color: #7968d9;
+}
+::placeholder {
+  font-size: 0.8rem;
+}
+.err {
+  /* border: 1px solid; */
+  color: red;
+  font-size: 12px;
+  min-height: 15px;
+}
+
+@media (max-width: 768px) {
+  .wrapper form {
+    width: 500px;
+    height: 650px;
+  }
+  .wrapper label{
+    font-size: 1rem;
+    margin-top: 4px;
+  }
+  ::placeholder{
+    font-size: 0.9rem;
+  }
+  .wrapper p {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 576px) {
+  .wrapper form {
+    width: 300px;
+    height: 550px;
+  }
+   .wrapper label{
+    font-size: 0.8rem;
+    margin-top: 2px;
+   }
+   form h2{
+    font-size: 1.4rem;
+   }
+   form i{
+    font-size: 0.9rem;
+   }
+   .wrapper input{
+    width: 250px;
+    margin-top: 2px;
+   }
+   ::placeholder{
+    font-size: 0.8rem;
+   }
+   .wrapper p {
+    font-size: 0.8rem;
+  }
+
+}

@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Page</title>
+    <link rel="stylesheet" href="./styledb.css" />
+    <link rel="stylesheet" href="./styleuser.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="home">
+          <i class="fa-solid fa-bars" id="menu"></i>
+          <a href="./dashboard.html">Home</a>
+        </div>
+        <div class="timer">
+          <span id="hour">00</span> : <span id="min">00</span> :
+          <span id="sec">00</span> : <span id="time">AM</span>
+        </div>
+      </header>
+      <aside>
+        <div class="profile">
+          <img src="./img/profile.jpg" alt="" />
+        </div>
+        <h3>Admin</h3>
+        <ul>
+          <li>
+            <a href="./dashboard.html">
+              <i class="fa-solid fa-house" style="color: white"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="./category.html">
+              <i class="fa-solid fa-list" style="color: white"></i>
+              <span>Category</span>
+            </a>
+          </li>
+          <li>
+            <a href="./products.html">
+              <i class="fa-solid fa-bag-shopping" style="color: white"></i>
+              <span>Products</span>
+            </a>
+          </li>
+          <li>
+            <a href="./customer.html">
+              <i class="fa-solid fa-users" style="color: white"></i>
+              <span>Customer</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" onclick="logout()">
+              <i
+                class="fa-solid fa-arrow-right-from-bracket"
+                style="color: white"
+              ></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="icons">
+          <a href="https://www.instagram.com/"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+          <a href="https://x.com/"><i class="fa-brands fa-twitter"></i></a>
+          <a href="https://www.facebook.com/"
+            ><i class="fa-brands fa-facebook-f"></i
+          ></a>
+          <a href="https://in.linkedin.com/"
+            ><i class="fa-brands fa-square-linkedin"></i
+          ></a>
+        </div>
+      </aside>
+      <main>
+        <table>
+          <thead>
+            <th>RegisterName</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Password</th>
+            <th>Confirmpassword</th>
+          </thead>
+          <tbody id="LoadData">
+            <tr>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
+      <footer>
+        <p>© 2026 Kamali Muruganantham. All rights reserved.</p>
+      </footer>
+    </div>
+    <script>
+      function logout() {
+        Swal.fire({
+          title: "Are you sure?",
+          text: "Do you really want to logout?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, Logout",
+          cancelButtonText: "Cancel",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            localStorage.removeItem("isLogin");
+            localStorage.removeItem("activeUser");
+
+            Swal.fire({
+              title: "Logged Out!",
+              text: "Logout Successfully",
+              icon: "success",
+              timer: 1500,
+              showConfirmButton: false,
+            });
+
+            setTimeout(() => {
+              window.location.href = "index.html";
+            }, 2000);
+          }
+        });
+      }
+      //menu
+      let menu = document.querySelector("#menu");
+      let aside = document.querySelector("aside");
+      let wrapper = document.querySelector(".wrapper");
+
+      menu.addEventListener("click", () => {
+        aside.classList.toggle("hide");
+        wrapper.classList.toggle("hide-sidebar");
+      });
+
+      //set Interval
+      let hour = document.querySelector("#hour");
+      let min = document.querySelector("#min");
+      let sec = document.querySelector("#sec");
+      let Time = document.querySelector("#time");
+
+      setInterval(() => {
+        let d = new Date();
+
+        let h = d.getHours();
+        let m = d.getMinutes();
+        let s = d.getSeconds();
+
+        let period = h >= 12 ? "PM" : "AM";
+
+        hour.innerHTML = String(h).padStart(2, "0");
+        sec.innerHTML = String(s).padStart(2, "0");
+        Time.innerHTML = period;
+      }, 1000);
+
+      //table
+      let registration = () => {
+        let data = document.getElementById("LoadData");
+        let reg = JSON.parse(localStorage.getItem("RegisterList")) || [];
+        let t = "";
+
+        reg.forEach((a) => {
+          t += `<tr>
+                <td>${a.name}</td>
+                <td>${a.email}</td>
+                <td>${a.phone}</td>
+                <td>${"*".repeat(a.pwd.length)}</td>
+                <td>${"*".repeat(a.cpwd.length)}</td>
+            </tr>`;
+        });
+        console.log(t);
+        data.innerHTML = t;
+      };
+
+      registration();
+    </script>
+  </body>
+</html>

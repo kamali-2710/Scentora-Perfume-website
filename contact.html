@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="./home.css">
+</head>
+<body>
+    <div class="wrapper">
+      <!-- home-page -->
+      <header>
+        <div class="logo">
+          <i class="fa-solid fa-spray-can-sparkles"></i>
+          <p>Scentora</p>
+        </div>
+        <div class="link">
+          <a href="./home.html">Home</a>
+          <a href="./about.html">About</a>
+           <a href="./shop.html">Shop</a>
+           <a href="./contact.html">Contact</a>
+           </div>
+        <nav>
+          <i
+            class="fa-solid fa-cart-arrow-down"
+            onclick="window.location.href = 'cart.html'"
+          >
+            <span id="cartCount">0</span>
+          </i>
+          <i class="fa-solid fa-heart"></i>
+          <div class="cart">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i><a href="">Logout</a>
+          </div>
+        </nav>
+      </header>
+
+      <!-- contact page -->
+       <section class="condetails-page navcontact">
+        <div class="details">
+          <div class="map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15674.823249341272!2d78.646515144706!3d10.833810629093605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baaf5a3d7ee57af%3A0x284711fde6a496b9!2sThillai%20Nagar%2C%20Tiruchirappalli%2C%20Tamil%20Nadu%20620102!5e0!3m2!1sen!2sin!4v1770868357934!5m2!1sen!2sin"
+              width="600"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+
+          <div class="cont">
+            <form action="">
+              <h3>CONTACT US</h3>
+              <label for="" class="name">Name</label>
+              <input type="text" placeholder="EnterYour Name"/>
+              <label for="">Email</label>
+              <input type="email"placeholder="Enter Your Email"/>
+              <textarea name="" id="" placeholder="Message" cols="50" rows="5"></textarea>
+              <button type="button" class="subbtn">Submit</button>
+            </form>
+          </div>
+        </div>
+      </section>
+       
+       <!-- footerdetail page -->
+      <section class="contactpage">
+        <div class="contact">
+          <div class="address">
+            <h4>Scentora</h4>
+            <p>
+              Address: 60-49 Road 11378 New York <br />
+              Phone: +65 11.188.888 <br />
+              Email: Fashionon@gmail.com
+            </p>
+            <div class="icons">
+              <i class="fa-brands fa-facebook-f"></i>
+              <i class="fa-brands fa-instagram"></i>
+              <i class="fa-brands fa-twitter"></i>
+              <i class="fa-brands fa-pinterest-p"></i>
+            </div>
+          </div>
+          <div class="link">
+            <h4>Quick Links</h4>
+            <a href=""><p>Home</p></a>
+            <a href=""><p>About Us</p></a>
+          </div>
+          <div class="support">
+            <h4>Support</h4>
+            <a href=""><p>FAQ</p></a>
+            <a href=""><p>Warranty</p></a>
+            <a href=""><p>Contact Us</p></a>
+          </div>
+          <div class="sub">
+            <h4>Join The Newsletter</h4>
+            <p>
+              Get E-mail updates about our latest shop <br />
+              and special offers.
+            </p>
+            <input type="text" placeholder="Enter your Email" class="email" />
+            <button class="btns">Subscribe</button>
+          </div>
+        </div>
+      </section>
+      <!-- footerpage -->
+      <div class="footerpage">
+        <p>© 2025 Scentora | All Rights Reserved</p>
+      </div>
+      </div>
+      <script src="script.js"></script>
+</body>
+</html>

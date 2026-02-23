@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Page</title>
+    <link rel="stylesheet" href="./styledb.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="home">
+          <i class="fa-solid fa-bars" id="menu"></i>
+          <a href="./dashboard.html">Home</a>
+        </div>
+
+        <div class="timer">
+          <span id="hour">00</span> : <span id="min">00</span> :
+          <span id="sec">00</span> : <span id="time">AM</span>
+        </div>
+      </header>
+
+      <aside>
+        <div class="profile">
+          <img src="./img/profile.jpg" alt="" />
+        </div>
+        <h3>Admin</h3>
+        <ul>
+          <li>
+            <a href="./dashboard.html">
+              <i class="fa-solid fa-house" style="color: white"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+             <a href="./category.html">
+               <i class="fa-solid fa-list" style="color: white"></i>
+              <span>Category</span>
+            </a>
+          </li>
+          <li>
+             <a href="./products.html">
+               <i class="fa-solid fa-bag-shopping" style="color: white"></i>
+              <span>Products</span>
+            </a>
+          </li>
+          <li>
+             <a href="./customer.html">
+              <i class="fa-solid fa-users" style="color: white"></i>
+              <span>Customer</span>
+            </a>
+          </li>
+          <li>
+             <a href="javascript:void(0)" onclick="logout()">
+              <i class="fa-solid fa-arrow-right-from-bracket"style="color: white"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="icons">
+          <a href="https://www.instagram.com/"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+          <a href="https://x.com/"><i class="fa-brands fa-twitter"></i></a>
+          <a href="https://www.facebook.com/"
+            ><i class="fa-brands fa-facebook-f"></i
+          ></a>
+          <a href="https://in.linkedin.com/"
+            ><i class="fa-brands fa-square-linkedin"></i
+          ></a>
+        </div>
+      </aside>
+
+      <main>
+        <div class="page-content dashboard-page">
+          <h3>Dashboard</h3>
+          <div class="main-box">
+            <div class="box1 box">
+              <h2 id="totalProducts"></h2>
+              <div class="div">
+                <p>Total Product</p>
+                <i class="fa-solid fa-box"></i>
+              </div>
+            </div>
+            <div class="box2 box">
+              <h2 id="totalCategories"></h2>
+              <div class="div">
+                <p>Total Category</p>
+                <i class="fa-solid fa-layer-group"></i>
+              </div>
+            </div>
+            <div class="box3 box">
+              <h2 id="totalUsers"></h2>
+              <div class="div">
+                <p>Total Registration</p>
+                <i class="fa-solid fa-users"></i>
+              </div>
+            </div>
+            <div class="box3 box">
+              <h2 id="totalStock"></h2>
+              <div class="div">
+                <p>Total Stock</p>
+                <i class="fa-solid fa-chart-line"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+        <p>© 2026 Kamali Muruganantham. All rights reserved.</p>
+      </footer>
+    </div>
+
+    <script>
+      // logout
+      function logout() {
+        Swal.fire({
+          title: "Are you sure?",
+          text: "Do you really want to logout?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, Logout",
+          cancelButtonText: "Cancel",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            localStorage.removeItem("isLogin");
+            localStorage.removeItem("activeUser");
+
+            Swal.fire({
+              title: "Logged Out!",
+              text: "Logout Successfully",
+              icon: "success",
+              timer: 1500,
+              showConfirmButton: false,
+            });
+
+            setTimeout(() => {
+              window.location.href = "index.html";
+            }, 2000);
+          }
+        });
+      }
+      //menu
+      let menu = document.querySelector("#menu");
+      let aside = document.querySelector("aside");
+      let wrapper = document.querySelector(".wrapper");
+
+      menu.addEventListener("click", () => {
+        aside.classList.toggle("hide");
+        wrapper.classList.toggle("hide-sidebar");
+      });
+
+      //set Interval
+      let hour = document.querySelector("#hour");
+      let min = document.querySelector("#min");
+      let sec = document.querySelector("#sec");
+      let Time = document.querySelector("#time");
+
+      setInterval(() => {
+        let d = new Date();
+
+        let h = d.getHours();
+        let m = d.getMinutes();
+        let s = d.getSeconds();
+
+        let period = h >= 12 ? "PM" : "AM";
+
+        hour.innerHTML = String(h).padStart(2, "0");
+        sec.innerHTML = String(s).padStart(2, "0");
+        Time.innerHTML = period;
+      }, 1000);
+
+      let dashboardCount = () => {
+        let productList = JSON.parse(localStorage.getItem("productList")) || [];
+        let categoryList =
+          JSON.parse(localStorage.getItem("categoryList")) || [];
+        let registerList =
+          JSON.parse(localStorage.getItem("RegisterList")) || [];
+
+        // Total Products
+        document.getElementById("totalProducts").innerText = productList.length;
+
+        // Total Categories
+        document.getElementById("totalCategories").innerText =
+          categoryList.length;
+        //total register
+        document.getElementById("totalUsers").innerText = registerList.length;
+
+        // Total Stock SUM
+        let totalStock = 0;
+        productList.forEach((p) => {
+          totalStock += Number(p.Stock);
+        });
+
+        document.getElementById("totalStock").innerText = totalStock;
+      };
+
+      dashboardCount();
+    </script>
+  </body>
+</html>
